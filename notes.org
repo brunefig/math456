@@ -1,0 +1,379 @@
+# -*- after-save-hook: (lambda () (org-latex-export-to-pdf t)) org-export-before-parsing-hook: (org-export-before-parsing-mathnotes) -*-
+#+LATEX_CLASS: mathnotes
+#+TITLE: MATH 456 (Honours Algebra 3)
+#+AUTHOR: J. Han
+#+PROPERTY: ANKI_DECK 📈 456
+
+* preamble
+
+The following notes are adapted and abridged from lectures given by Henri Darmon in Fall 2024.
+All errors in interpretation, reasoning, coherence, and articulation are my own.
+
+This document's source code, located at https://github.com/brunefig/math456/blob/main/notes.org,
+can be converted into [[https://apps.ankiweb.net/][Anki]] flashcards with the [[https://github.com/eyeinsky/org-anki/][\texttt{org-anki}]] package for [[https://www.gnu.org/software/emacs/][GNU Emacs]]---just make sure to flush all lines containing an \texttt{:ANKI\_NOTE\_ID:} property first.
+Flashcard [[https://en.wikipedia.org/wiki/Cloze_test][cloze deletions]] are typeset in {{c1::magenta}}.
+
+* 2024-08-28 groups and symmetries
+** definition and notation of groups
+*** definition
+:PROPERTIES:
+:ANKI_NOTE_ID: 1724849802912
+:END:
+A {{c4::<<<group>>>}} is a structure denoted by {{c3::$(G, \ast, e)$}},
+where $G$ is a {{c1::set}} equipped with a
+{{c1::binary operation}} $\ast$, that satisfies
+- {{c2::$e \in G \land \forall a \in G$ : $e \ast a$ = $a \ast e$ = $a$}},
+- {{c2::$\forall a \in G$ : $\exists a^{-1} \in G$ : $a \ast a^{-1}$  = $a^{-1} \ast a$ = $e$}}, and
+- {{c2::$\forall a,b,c \in G$ : $(a \ast b ) \ast c$ = $a \ast (b \ast c)$}}.
+*** notation
+:PROPERTIES:
+:ANKI_NOTE_ID: 1724850473774
+:END:
+{{c1::$e$}}, {{c1::$a \ast b$}}, and {{c1::$\underset{n \text{ times} }{a \ast \dots \ast a}$}} are often expressed as
+{{c2::$1$}}, {{c2::$ab$}}, and {{c2::$a^n$}} respectively.
+*** commutative notation
+:PROPERTIES:
+:ANKI_NOTE_ID: 1724850539149
+:END:
+For {{c1::commutative}} groups,
+{{c1::$e$}}, {{c1::$a \ast b$}}, and {{c1::$\underset{n \text{ times} }{a \ast \dots \ast a}$}} are often expressed as
+{{c2::$0$}}, {{c2::$a + b$}}, and {{c2::$na$}} respectively.
+** <<<symmetry>>> and automorphism groups
+*** definition
+:PROPERTIES:
+:ANKI_NOTE_ID: 1724850051774
+:END:
+A {{c1::symmetry}} of $X$ is {{c2::a function $X \rightarrow X$ that preserves the structure of $X$}}.
+*** <<<automorphism>>> group
+:PROPERTIES:
+:ANKI_NOTE_ID: 1724850053599
+:END:
+The set of {{c1::symmetries}} of $X$,
+denoted by {{c3::$\text{Aut}(X)$}}, forms a {{c2::group}}
+({{c3::$\text{Aut}(X)$}},
+{{c3::$\circ$}},
+{{c3::$\text{id}$}}).
+** examples of automorphism groups
+*** <<<permutation group>>>
+:PROPERTIES:
+:ANKI_NOTE_ID: 1724851036102
+:END:
+The {{c1::permutation group}} for a {{c2::finite set}} $X$ is
+{{c3::$\text{Aut}(X)$}} = {{c1::$S_X$}} := {{c1::$\{\text{bijections } X \rightarrow X\}$}}.
+*** <<<invertible>>> <<<linear transformations>>>
+:PROPERTIES:
+:ANKI_NOTE_ID: 1724851038226
+:END:
+For a {{c1::vector space $V$}},
+{{c2::$\text{Aut}(V)$}} =
+{{c3::$\{\text{invertible linear transformations } V \rightarrow V\}$}}.
+**** invertible square matrices
+:PROPERTIES:
+:ANKI_NOTE_ID: 1724851039901
+:END:
+For {{c1::a vector space $V$ over a field $\mathbb{F}$}},
+{{c2::$V$ = $\mathbb{F}^n$}} if {{c3::$n$ := $\dim_{\mathbb{F} }(V) \in \mathbb{N}$}}, hence
+{{c4::$\text{Aut}(X)$}} = {{c2::$GL_n(\mathbb{F})$}} :=
+{{c2::the group of invertible $n \times n$ matrices with entries in $\mathbb{F}$}}.
+*** additive ring group
+:PROPERTIES:
+:ANKI_NOTE_ID: 1724854377619
+:END:
+For a {{c1::ring $R$}},
+($R$, {{c2::+}}, {{c2::$0$}}) is a {{c3::commutative group}}.
+**** TODO COMMENT
+For a ring $R$,
+$(R^\ast, \times, 1)^{-1}$ is a group.
+*** <<<dihedral>>> group
+:PROPERTIES:
+:ANKI_NOTE_ID: 1724854526845
+:END:
+The {{c2::dihedral group}} on a {{c1::square}} $X$ is
+{{c3::$\text{Aut}(X)$}} = {{c2::$D_8$}} :=
+{{c2::$\{1, r, r^2, r^3, V, H, D_1, D_2\}$}},
+where {{c2::$r$}} is {{c2::a rotation by 90 degrees}} and
+{{c2::$V$, $H$, $D_1$, $D_2$}} are {{c2::reflections over the vertical, horizontal, and diagonal axes respectively}}.
+*** <<<orthogonal>>> group
+:PROPERTIES:
+:ANKI_NOTE_ID: 1724854613891
+:END:
+The {{c3::orthogonal group}} of a {{c1::Euclidean space}} $V$
+with {{c2::$\dim_{\mathbb{R} }(V) \in \mathbb{N}$}} is
+{{c4::$\text{Aut}(V)$}} = {{c3::$O(V)$}} :=
+{{c3::$\{T : V \rightarrow V \mid \forall u,v \in V : (Tu \cdot Tv) = uv\}$}}
+with {{c4::$e$}} := {{c5::$\cdot$}}.
+* 2024-08-30 isomorphisms and group actions
+** homomorphisms, isomorphisms, and automorphisms
+*** <<<homomorphism>>>
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725022300541
+:END:
+For {{c1::groups}} $G$ and $H$,
+a {{c2::homomorphism}} $\phi$ : $G \rightarrow H$
+is a function satisfying
+{{c3::$\forall a,b \in G$ : $\phi(ab)$ = $\phi(a) \phi(b)$}}.
+**** homomorphism preserves identity :theorem:
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725027238263
+:END:
+{{c1::$\phi(1_{G})$}} = {{c2::$1_{H}$}}
+for a {{c3::homomorphism}} $\phi$ : $G \rightarrow H$.
+***** Prove that $\phi(1_{G})$ = $1_{H}$ for a homomorphism $\phi$ : $G \rightarrow H$.
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725022489488
+:END:
+$\phi(1_{G})$ =
+$\phi(1_{G})^{-1} \phi(1_{G})^2$ =
+$\phi(1_{G})^{-1} \phi(1_{G}^2)$ =
+$\phi(1_{G})^{-1} \phi(1_{G})$ =
+$1_{H}$.
+**** homomorphism preserves inverse :theorem:
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725038053472
+:END:
+{{c1::$\phi(g^{-1})$}} = {{c2::$\phi(g)^{-1}$}} for a homomorphism $\phi$ : $G \rightarrow H$ and $g \in G$.
+***** Prove that $\forall g \in G$ : $\phi(g^{-1})$ = $\phi(g)^{-1}$ for a homomorphism $\phi$ : $G \rightarrow H$.
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725038050022
+:END:
+$\phi(g^{-1}) \phi(g)$ =
+$\phi(g^{-1} g)$ =
+$\phi(1_G)$ = $1_H$.
+*** <<<isomorphism>>>
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725022568664
+:END:
+An {{c2::isomorphism}} is {{c1::a bijective homomorphism}}.
+**** <<<isomorphic>>>
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725022654089
+:END:
+Groups $G$ and $H$ are {{c1::isomorphic}},
+denoted {{c3::$G$ = $H$}}, when
+{{c2::a $G \rightarrow H$ isomorphism exists}}.
+***** automorphisms of a group
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725022680390
+:END:
+For a group $G$, $\text{Aut}(G)$ = {{c1::$\{\text{isomorphisms } G \rightarrow G\}$}}.
+** cyclic groups
+*** <<<cyclic group>>>
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725022797617
+:END:
+The {{c3::cyclic group}} of {{c3::order}} $n$ is
+{{c1::$\mathbb{Z}/n \mathbb{Z}$}} := {{c2::$\{k \in \mathbb{N} \mid k < n\}$}}.
+**** symmetries on a cyclic group
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725023137494
+:END:
+An isomorphism $\phi$ : $\mathbb{Z}/n \mathbb{Z} \rightarrow \mathbb{Z}/n \mathbb{Z}$
+is uniquely determined by {{c1::the value of $\phi(1)$}}.
+**** automorphisms of a cyclic group
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725023321167
+:END:
+$\text{Aut}(\mathbb{Z}/n \mathbb{Z})$ = {{c2::$(\mathbb{Z}/n \mathbb{Z})^{\times}$}},
+since any {{c1::$\mathbb{Z}/n \mathbb{Z} \rightarrow \mathbb{Z}/n \mathbb{Z}$ isomorphism}} $\phi$ must have
+$\phi(1) \in$ {{c2::$(\mathbb{Z}/n \mathbb{Z})^{\times}$}} to ensure {{c3::bijectivity}}.
+** group actions
+*** <<<group action>>>
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725039165550
+:END:
+A {{c1::group action}} or {{c1::action of a group $G$ on an object $X$}} is
+$\ast$ : {{c2::$G \times X$}} $\rightarrow$ {{c2::$X$}} such that,
+for $g, g' \in G$ and $x \in X$,
+- {{c3::$1_G \ast x$ = $x$}},
+- {{c3::$(g \ast g') \ast x$ = $g \ast (g' \ast x)$}}, and
+- {{c3::$m_g$ : $X \rightarrow X$ : $x \mapsto g \ast x \in \text{Aut}(X)$}}.
+*** group action map is a group homomorphism :theorem:
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725378046836
+:END:
+For an object $X$ and action of a group $G$ on $X$,
+$m$ : {{c1::$G$}} $\rightarrow$ {{c1::$\text{Aut}(X)$}} : $g \mapsto$ {{c2::$m_g$}} is a group homomorphism.
+**** Prove that $m$ : $G \rightarrow \text{Aut}(X)$ : $g \mapsto m_g$ is a group homomorphism.
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725378052685
+:END:
+$\forall g, g' \in G$ : $\forall x \in X$ : $m_{g g'}(x)$ = $(g g') x$ = $g (g' x)$ = $(m_g \circ m_{g'}) (x)$.
+*** bijectivity of an element action :theorem:
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725378228835
+:END:
+{{c1::Bijectivity}} of {{c2::$m_g$}} follows from the definition of a group action.
+**** Prove that the bijectivity of $m_g$ : $X \rightarrow X$ for a group $G$, an object $X$, and $g \in G$ follows from the definition of a group action.
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725378677337
+:END:
+$m_{g^{-1}}$ = $m_g^{-1}$.
+* 2024-09-04 G-sets
+** definition and properties of \(G\)-sets
+*** <<<$G$-set>>>
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725454803259
+:END:
+A {{c1::\(G\)-set}} is a {{c2::set}} $X$ equipped with {{c3::an action $\ast$ of a group $G$}}.
+*** <<<transitive>>> $G$-set
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725454805035
+:END:
+A \(G\)-set $X$ is {{c1::transitive}} when
+{{c2::$\forall x,x' \in X$ : $\exists g \in G$ : $g \ast x$ = $x'$}}.
+**** <<<orbit>>>
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725454462432
+:END:
+{{c1::A transitive \(G\)-subset of $X$}} is {{c3::an equivalence class}} and is called {{c2::an orbit of $G$ on $X$}}.
+**** $G$-sets are disjoint unions of orbits :theorem:
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725454807758
+:END:
+Every {{c1::\(G\)-set}} is a {{c2::disjoint union}} of {{c3::orbits}}.
+***** Prove that every \(G\)-set is a disjoint union of orbits.
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725454465232
+:END:
+Define a relation on $X$ by $x \underset{G}{\sim} y$ if
+$\exists g \in G$ : $gx$ = $y$.
+Since $\underset{G}{\sim}$ is an equivalence relation,
+$X$ can be expressed as a disjoint union of equivalence classes $X/G$ for $\underset{G}{\sim}$.
+** examples of \(G\)-sets for an arbitary group $G$
+*** trivial $G$-set
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725454795832
+:END:
+For a group $G$, $X$ := {{c1::$\{1\}$}} with
+{{c2::$\forall g \in G$ : $g \ast 1$ = $1$}} is a \(G\)-set
+with $\text{Aut}(X)$ = {{c2::$\{\text{id}\}$}}.
+*** left multiplication $G$-set
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725455040484
+:END:
+For a group $G$, $X$ := {{c1::$G$}} with {{c2::left multiplication}} is a \(G\)-set and produces an {{c3::injective}} homomorphism
+$m$ : {{c4::$G$}} $\rightarrow$ {{c4::$S_G$}}.
+**** <<<Cayley>>>'s theorem
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725455234884
+:END:
+({{c2::Cayley's theorem}}.)
+Every {{c1::group}} is {{c1::a subgroup of a group of permutations}};
+in particular, if a {{c1::group $G$}} is finite, then {{c1::$G \subseteq S_G$}}.
+*** inverse right multiplication $G$-set :theorem:
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725456185139
+:END:
+For a group $G$, $X$ := {{c1::$G$}} with
+$\forall (g, x) \in G \times X$ : {{c2::$g \ast x$ := $x g^{-1}$}} is a \(G\)-set.
+**** Prove that $g \ast x$ := $x g^{-1}$ is an action of a group $G$ on itself.
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725456388541
+:END:
+Let $g, g', x \in G$. Then
+$1 \ast x$ = $x 1$ = $x$ and
+$g \ast (g' x)$ =
+$g \ast (x g'^{-1})$ =
+$(x g'^{-1} \ast) g^{-1}$ =
+$x (g'^{-1} g^{-1})$ =
+$x (g g')^{-1}$ =
+$(g g') \ast x$.
+*** bidirectional multiplication $G$-set
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725630224368
+:END:
+For a group $G$, $X$ := $G$ with
+$\forall g, g' \in G$ : $\forall x \in X$ : $(g', g) \ast x$ := {{c1::$g' x g^{-1}$}}
+is a {{c2::\((G \times G)\)-set}}.
+* 2024-09-06 isomorphic G-sets and cosets
+Given an arbitrary group $G$, is it possible to classify all the \(G\)-sets up to isomorphism?
+** isomorphism between \(G\)-sets
+*** isomorphism between $G$-sets
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725626741857
+:END:
+An {{c1::isomorphism}} between {{c2::\(G\)-sets}} $X$ and $X'$ is
+a {{c3::bijection}} $\phi$ : $X \rightarrow X'$ such that
+{{c3::$\forall (g, x) \in G \times X$ : $\phi(g \ast x)$ = $g \ast \phi(x)$}}.
+** cosets
+*** <<<coset>>>
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725627195701
+:END:
+For a {{c1::subgroup $H \subseteq G$}} and {{c1::$g \in G$}},
+{{c2::$g H$}} := {{c2::$\{g h \mid h \in H\}$}}
+is called a {{c3::left coset}} of $H$.
+*** right action orbit
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725627197250
+:END:
+For a {{c1::subgroup $H \subseteq G$}},
+the {{c2::orbits for the right action of $H$ on $G$}} are
+{{c3::$G/H$}} := {{c2::$\{g H \mid g \in G\}$}}.
+**** left action $G$-set
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725628019502
+:END:
+For a subgroup $H \subseteq G$,
+{{c2::$G/H$}} with {{c1::left multiplication}} is a \(G\)-set.
+*** left action orbit
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725627198825
+:END:
+For a {{c1::subgroup $H \subseteq G$}},
+the {{c2::orbits for the left action of $H$ on $G$}} are
+{{c2::$H \backslash G$}} := {{c3::$\{H g \mid g \in G\}$}}.
+*** inequality of left and right orbits
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725627429050
+:END:
+For a subgroup $H \subseteq G$, the sets {{c2::$G/H$}} and {{c2::$H \backslash G$}} {{c3::need not be identical}};
+for example, $G$ := $S_3$ and $H$ := {{c1::$\{\text{id}, (12)\}$}} gives
+{{c2::$G/H$}} =
+{{c3::$\bigl\{ \{\text{id}, (12)\}, \{(13), (123)\}, \{(23), (132)\} \bigr\}$}}
+and {{c2::$H \backslash G$}} =
+{{c3::$\bigl\{ \{\text{id}, (12)\}, \{(13), (132)\}, \{(23), (123)\} \bigr\}$}}.
+*** cardinality of a coset :theorem:
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725627628052
+:END:
+For a {{c1::finite}} subgroup $H \subseteq G$,
+$\forall g \in G$ : $|g H|$ = {{c2::$|H|$}}.
+**** For a finite subgroup $H \subseteq G$, prove that $\forall g \in H$ : $|g H|$ = $|H|$.
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725627629602
+:END:
+Let $g \in G$. Then the map $H \rightarrow g H$ : $h \mapsto g h$ has inverse $h \mapsto g^{-1} h$ and is therefore bijective.
+**** Lagrange's theorem
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725627934628
+:END:
+({{c1::Lagrange's theorem}}.)
+Any subgroup $H \subseteq G$ satisfies {{c2::$|H| \big| |G|$}}.
+*** existence of an isomorphic orbit :theorem:
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725628227028
+:END:
+For a {{c2::transitive \(G\)-set}} $X$,
+$\exists$ {{c1::$H \subseteq G$}} : {{c3::$X$ = $G/H$ as a \(G\)-set}}.
+**** For a transitive \(G\)-set $X$, prove that $\exists$ $H \subseteq G$ : $X$ = $G/H$ as a \(G\)-set.
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725628975659
+:END:
+Let $x \in X$, $H$ := $\text{stab}_G(x)$ := $\{g \in G \mid g x$ = $x\}$, and $g, g' \in G$.
+$1 x$ = $x$ and $g x$ = $x \land g' x$ = $x \implies (g g') x$ = $x$,
+so $H$ is a subgroup.
+
+
+$\phi$ : $G/H \rightarrow X$ : $g H \mapsto g x$ is well-defined;
+$g H$  = $g' H \implies \exists h \in H$ : $g x$ = $(g' h) x$ = $g' (h x)$ = $g' x$.
+$\phi$ is also surjective by transitivity of $X$ and injective since
+$g' x$ = $g x \implies g^{-1} g' x$ = $x \implies \exists h \in H$ : $g^{-1} g'$ = $h \implies g' H$ = $g H$.
+
+Finally, $\phi(g' (g H))$ = $\phi((g' g) H)$ = $(g g') x$ = $g' (g x)$ = $g' \phi(g H)$.
+**** cardinality of a transitive $G$-set
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725629229880
+:END:
+For a {{c1::finite}} group $G$ with a {{c2::transitive \(G\)-set}} $X$,
+{{c3::$|X|$}} {{c4::$\big|$}} {{c3::$|G|$}}.
