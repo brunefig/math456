@@ -339,7 +339,7 @@ and {{c2::$H \backslash G$}} =
 :END:
 For a {{c1::finite}} subgroup $H \subseteq G$,
 $\forall g \in G$ : $|g H|$ = {{c2::$|H|$}}.
-**** For a finite subgroup $H \subseteq G$, prove that $\forall g \in H$ : $|g H|$ = $|H|$.
+**** For a finite subgroup $H \subseteq G$, prove that $\forall g \in G$ : $|g H|$ = $|H|$.
 :PROPERTIES:
 :ANKI_NOTE_ID: 1725627629602
 :END:
@@ -371,9 +371,85 @@ $\phi$ is also surjective by transitivity of $X$ and injective since
 $g' x$ = $g x \implies g^{-1} g' x$ = $x \implies \exists h \in H$ : $g^{-1} g'$ = $h \implies g' H$ = $g H$.
 
 Finally, $\phi(g' (g H))$ = $\phi((g' g) H)$ = $(g g') x$ = $g' (g x)$ = $g' \phi(g H)$.
-**** cardinality of a transitive $G$-set
+* 2024-09-09 orbit stabilizer theorem
+** cardinalities of groups, \(G\)-sets, and stabilizers
+*** index of a subgroup
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725894527931
+:END:
+For a subgroup $H \subseteq G$,
+the {{c1::index}} of $H$ in $G$ is
+{{c2::$[G : H]$}} = {{c3::$|G/H|$}}.
+*** <<<conjugate>>>
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725895432518
+:END:
+Group elements $a, b \subseteq G$ are called {{c1::conjugate}}, or members of the same {{c1::conjugacy class}}, when {{c2::$\exists g \in G$ : $a$ = $g b g^{-1}$}}.
+*** stabilizers for a transitive $G$-set
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725894795816
+:END:
+For a {{c1::transitive}} \(G\)-set $X$, all {{c2::stabilizers of elements in $X$}} are isomorphic.
+**** For a transitive \(G\)-set $X$, prove that all stabilizers of elements in $X$ are isomorphic.
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725894876517
+:END:
+Let $x, x' \in X$, $g \in G$ : $x'$ = $gx$, and $h \in \text{stab}(x')$.
+Then
+$h x'$ = $x'$
+$\iff$
+$h g x$ = $g x$
+$\iff$
+$g^{-1} h g x$ = $x$
+$\implies$
+$g^{-1} h g \in \text{stab}(x)$,
+so $\text{stab}(x')$ and $\text{stab}(x)$ are conjugate hence isomorphic.
+*** <<<orbit stabilizer>>> theorem
 :PROPERTIES:
 :ANKI_NOTE_ID: 1725629229880
 :END:
+({{c4::Orbit stabilizer theorem}}.)
 For a {{c1::finite}} group $G$ with a {{c2::transitive \(G\)-set}} $X$,
-{{c3::$|X|$}} {{c4::$\big|$}} {{c3::$|G|$}}.
+$x \in X$, and $H$ := {{c2::$\text{stab}(x)$}},
+{{c3::$|G|$}} = {{c3::$|X| |H|$}}.
+*** TODO number of transitive $G$-sets of an arbitrary cardinality
+For a group $G$ and $n \in \mathbb{N}$, there are
+conjugacy classes of subgroups of index $n$
+$[G : H]$ = $\frac{|G|}{|H|}$ = $|G/H|$
+transitive \(G\)-sets $X$ with $|X|$ = $n$.
+** examples using the orbit stabilizer theorem
+*** symmetric group
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725896143371
+:END:
+For $n \in \mathbb{N}$, $G$ := $S_n$, $X$ := {{c1::$[n]$}}, and $x \in X$,
+{{c2::$\text{stab}(x)$}} $\cong$ {{c3::$S_{n-1}$}} $\subseteq G$.
+*** tetrahedron rotations
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725897052599
+:END:
+For a {{c1::regular tetrahedron}} $X$ := $[4]$,
+a {{c1::vertex}} $x \in X$, and $G$ := $\text{Aut}(X)$ :=
+{{c1::the group of rotations that preserve $X$'s positions}},
+$|G|$ = {{c2::$|X| |\text{stab}(1)|$}} = {{c2::$12$}} by {{c2::the orbit stabilizer theorem}}.
+Since {{c3::it is not possible to rotate a tetrahedron in a way that transposes exactly two vertices}},
+$G \cong$ {{c4::$A_4$}}.
+**** tetrahedron rotations and reflections
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725897055178
+:END:
+For a {{c1::regular tetrahedron}} $X$ := $[4]$,
+a {{c1::vertex}} $x \in X$, and $G$ := $\text{Aut}(X)$ :=
+{{c1::the group of rotations and reflections that preserve $X$'s positions}},
+{{c2::the rotations are isomorphic to $A_4$}} and
+{{c2::reflections are represented by transpositions}}, so
+$G \cong$ {{c3::$S_4$}}.
+*** cube rotations
+:PROPERTIES:
+:ANKI_NOTE_ID: 1725897194449
+:END:
+For a {{c1::regular cube}} $X$ = $[5]$,
+a {{c1::face}} $x \in X$, and
+$G$ := $\text{Aut}(X)$ := {{c1::the set of rotations that preserve $X$'s positions}},
+$\text{stab}_G(x) \cong$ {{c2::$\mathbb{Z}/4 \mathbb{Z}$}}
+Then $|G|$ = {{c3::$|X| |\text{stab}_G(x)$}} = {{c3::$24$}} by {{c3::the orbit stabilizer theorem}}.
