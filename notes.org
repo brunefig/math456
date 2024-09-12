@@ -10,7 +10,8 @@ The following notes are adapted and abridged from lectures given by Henri Darmon
 All errors in interpretation, reasoning, coherence, and articulation are my own.
 
 This document's source code, located at https://github.com/brunefig/math456/blob/main/notes.org,
-can be converted into [[https://apps.ankiweb.net/][Anki]] flashcards with the [[https://github.com/eyeinsky/org-anki/][\texttt{org-anki}]] package for [[https://www.gnu.org/software/emacs/][GNU Emacs]]---just make sure to flush all lines containing an \texttt{:ANKI\_NOTE\_ID:} property first.
+can be converted into [[https://apps.ankiweb.net/][Anki]] flashcards with the [[https://github.com/eyeinsky/org-anki/][\texttt{org-anki}]] package for [[https://www.gnu.org/software/emacs/][GNU Emacs]];
+just make sure to flush all lines containing an \texttt{:ANKI\_NOTE\_ID:} property first.
 Flashcard [[https://en.wikipedia.org/wiki/Cloze_test][cloze deletions]] are typeset in {{c1::magenta}}.
 
 * 2024-08-28 groups and symmetries
@@ -252,7 +253,7 @@ with $\text{Aut}(X)$ = {{c2::$\{\text{id}\}$}}.
 :ANKI_NOTE_ID: 1725455040484
 :END:
 For a group $G$, $X$ := {{c1::$G$}} with {{c2::left multiplication}} is a \(G\)-set and produces an {{c3::injective}} homomorphism
-$m$ : {{c4::$G$}} $\rightarrow$ {{c4::$S_G$}}.
+$m$ : {{c4::$G$}} $\hookrightarrow$ {{c4::$S_G$}}.
 **** <<<Cayley>>>'s theorem
 :PROPERTIES:
 :ANKI_NOTE_ID: 1725455234884
@@ -372,19 +373,19 @@ $g' x$ = $g x \implies g^{-1} g' x$ = $x \implies \exists h \in H$ : $g^{-1} g'$
 
 Finally, $\phi(g' (g H))$ = $\phi((g' g) H)$ = $(g g') x$ = $g' (g x)$ = $g' \phi(g H)$.
 * 2024-09-09 orbit stabilizer theorem
-** cardinalities of groups, \(G\)-sets, and stabilizers
-*** index of a subgroup
+** index of a subgroup
 :PROPERTIES:
 :ANKI_NOTE_ID: 1725894527931
 :END:
 For a subgroup $H \subseteq G$,
 the {{c1::index}} of $H$ in $G$ is
 {{c2::$[G : H]$}} = {{c3::$|G/H|$}}.
-*** <<<conjugate>>>
+** <<<conjugate>>>
 :PROPERTIES:
 :ANKI_NOTE_ID: 1725895432518
 :END:
 Group elements $a, b \subseteq G$ are called {{c1::conjugate}}, or members of the same {{c1::conjugacy class}}, when {{c2::$\exists g \in G$ : $a$ = $g b g^{-1}$}}.
+** relationship between groups, \(G\)-sets, and stabilizers
 *** stabilizers for a transitive $G$-set
 :PROPERTIES:
 :ANKI_NOTE_ID: 1725894795816
@@ -404,19 +405,21 @@ $g^{-1} h g x$ = $x$
 $\implies$
 $g^{-1} h g \in \text{stab}(x)$,
 so $\text{stab}(x')$ and $\text{stab}(x)$ are conjugate hence isomorphic.
-*** <<<orbit stabilizer>>> theorem
+**** cardinalities of groups, $G$-sets, and stabilizers
 :PROPERTIES:
 :ANKI_NOTE_ID: 1725629229880
 :END:
-({{c4::Orbit stabilizer theorem}}.)
 For a {{c1::finite}} group $G$ with a {{c2::transitive \(G\)-set}} $X$,
 $x \in X$, and $H$ := {{c2::$\text{stab}(x)$}},
 {{c3::$|G|$}} = {{c3::$|X| |H|$}}.
-*** TODO number of transitive $G$-sets of an arbitrary cardinality
-For a group $G$ and $n \in \mathbb{N}$, there are
-conjugacy classes of subgroups of index $n$
-$[G : H]$ = $\frac{|G|}{|H|}$ = $|G/H|$
-transitive \(G\)-sets $X$ with $|X|$ = $n$.
+*** <<<orbit stabilizer>>> theorem
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726065548261
+:END:
+({{c3::Orbit stabilizer theorem}}.) For a group $G$, there exists
+{{c1::a bijection between transitive \(G\)-sets (up to isomorphism) and subgroups of $G$ (up to conjugacy)}}.
+Thus the number of {{c1::transitive \(G\)-sets}} of cardinality {{c2::$n$}} is equal to
+the number of {{c1::conjugacy classes of $G$}} of cardinality {{c2::$\frac{|G|}{n}$}}.
 ** examples using the orbit stabilizer theorem
 *** symmetric group
 :PROPERTIES:
@@ -448,8 +451,109 @@ $G \cong$ {{c3::$S_4$}}.
 :PROPERTIES:
 :ANKI_NOTE_ID: 1725897194449
 :END:
-For a {{c1::regular cube}} $X$ = $[5]$,
+For a {{c1::regular cube}} $X$ = $[6]$,
 a {{c1::face}} $x \in X$, and
 $G$ := $\text{Aut}(X)$ := {{c1::the set of rotations that preserve $X$'s positions}},
 $\text{stab}_G(x) \cong$ {{c2::$\mathbb{Z}/4 \mathbb{Z}$}}
 Then $|G|$ = {{c3::$|X| |\text{stab}_G(x)$}} = {{c3::$24$}} by {{c3::the orbit stabilizer theorem}}.
+Furthermore, there are {{c3::$\frac{|G|}{12}$}} = {{c3::2}} and {{c3::$\frac{|G|}{8}$}} = {{c3::3}}
+{{c1::rotations}} that {{c1::fix a given edge and vertex}} respectively.
+* 2024-09-11 kernels and injectivity
+** kernels
+*** <<<normal>>> subgroup
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726067412740
+:END:
+A {{c1::normal}} subgroup $H \subseteq G$ is one for which
+$\forall g \in G$ : {{c2::$g H g^{-1} \subseteq H$}}; equivalently,
+$\forall g \in G$ : {{c2::$g H$ = $H g$}}, or
+{{c2::$G/H$}} is {{c2::a group}}.
+*** <<<kernel>>>
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726059466794
+:END:
+The {{c1::kernel}} of a group homomorphism $\phi$ : $G \rightarrow H$ is
+{{c1::$\ker(\phi)$}} := {{c2::$\{g \in G \mid \phi(g)$ = $1_H\}$}}.
+*** normality of a kernel :theorem:
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726111158822
+:END:
+For a group homomorphism $\phi$ : $G \rightarrow H$, {{c1::$\ker(\phi)$}} is a {{c2::normal subgroup}} of $G$.
+**** For a group homomorphism $\phi$ : $G \rightarrow H$, prove that $\ker(\phi)$ is a normal subgroup of $G$.
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726059642395
+:END:
+Let $g, g' \in G$. Then
+$\phi(1_G)$ = $1_H$,
+$\phi(g^{-1})$ = $\phi(g)^{-1}$ = $1_H^{-1}$ = $1_H$,
+and $\phi(gg')$ = $\phi(g) \phi(g')$ = $1_H$
+so $\ker(\phi) \subseteq G$.
+Furthermore, $\forall k \in \ker(\phi)$ :
+$\phi(g k g^{-1})$ = $\phi(g) \phi(k) \phi(g)^{-1}$ = $\phi(g) \phi(g^{-1})$ = $1_H$.
+** injective group homomorphisms
+\bigskip
+*** injectivity via the kernel :theorem:
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726059369546
+:END:
+A group homomorphism $\phi$ : $G \rightarrow H$ is {{c1::injective}} iff
+{{c2::$\ker(\phi)$ = $\{1_G\}$}}.
+**** Prove that a group homomorphism $\phi$ : $G \rightarrow H$ is injective iff $\ker(\phi)$ = $\{1_G\}$.
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726065827760
+:END:
+Let $g, g' \in G$. Then
+$\phi(g')$ = $\phi(g)$
+$\implies$
+$\phi(g)^{-1} \phi(g')$ = $\phi(g^{-1} g')$ = $1_H$
+$\implies$
+$g^{-1} g'$ = $1_G$
+holds iff $\ker(\phi)$ = $\{1_G\}$.
+*** isomorphism theorem for groups :theorem:
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726067975392
+:END:
+({{c1::Isomorphism theorem for groups}}.)
+A group homomorphism $\phi$ : $G \rightarrow H$ induces
+{{c2::an injective homomorphism $\tilde{\phi}$ : $G/\ker(\phi) \hookrightarrow H$}}.
+**** (Isomorphism theorem for groups.) Prove that a group homomorphism $\phi$ : $G \rightarrow H$ induces an injective homomorphism $\tilde{\phi}$ : $G/\ker(\phi) \hookrightarrow H$.
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726067966242
+:END:
+$\tilde{\phi}$ : $g \ker(\phi) \mapsto \phi(g)$ is clearly well-defined and a homomorphism.
+It is also injective because $\tilde{\phi}(g\ker(\phi))$ = $\phi(g)$ = $1 \implies g \in \ker(\phi) \implies g \ker(\phi)$ = $\ker(\phi)$.
+**** image of a group homomorphism
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726111284695
+:END:
+By {{c1::the isomorphism theorem for groups}}, $\text{im}(\phi) \cong$ {{c2::$G/\ker(\phi)$}}.
+** cube symmetries
+*** <<<principal diagonal>>>
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726058969220
+:END:
+A {{c1::principal diagonal}} of a cube is {{c2::a line containing two maximally distant vertices}}.
+*** cube rotations are $S_4$ :theorem:
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726110916721
+:END:
+The group of {{c1::structure-preserving rotations}} of a {{c2::cube}} is isomorphic to {{c3::$S_4$}}.
+**** Prove that the group $G$ of structure-preserving rotations of a cube is isomorphic to $S_4$.
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726110921217
+:END:
+For the group homomorphism $\phi$ : $G \rightarrow S_4$
+associated with the action of rotations $G$
+on a cube's principal diagonals $X$,
+\[\ker(\phi) = \{ \sigma : X \rightarrow X \mid \forall x \in X : \sigma(x) = x\} = \bigcap_{x \in X} \text{stab}_G(x).\]
+$|\text{stab}_G(x)|$ = $\frac{|G|}{|X|}$ = $6$ by the orbit stabilizer theorem, and
+$\text{stab}_G(x) \cong S_3$ by considering
+$A_3$ as the set of rotations about $x$ and
+$S_3 - A_3$ as the set of nontrivial rotations about any line passing through an edge with vertices disjoint to $x$.
+The identity is only permutation common to all four stabilizers, so $\ker(\phi)$ = $\{1\}$.
+
+An injective homomorphism
+$\tilde{\phi}$ : $G/\ker(\phi) \hookrightarrow S_4$ exists
+by the isomorphism theorem for groups;
+since $G \cong G/\ker(\phi)$ and $|G|$ = $|S_4|$, this implies $G \cong S_4$.
+* 2024-09-13 
