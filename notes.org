@@ -279,11 +279,11 @@ $(x g'^{-1} \ast) g^{-1}$ =
 $x (g'^{-1} g^{-1})$ =
 $x (g g')^{-1}$ =
 $(g g') \ast x$.
-*** bidirectional multiplication $G$-set
+*** conjugation $G$-set
 :PROPERTIES:
 :ANKI_NOTE_ID: 1725630224368
 :END:
-For a group $G$, $X$ := $G$ with
+For a group $G$, $X$ := $G$ with the {{c1::conjugation}} action
 $\forall g, g' \in G$ : $\forall x \in X$ : $(g', g) \ast x$ := {{c1::$g' x g^{-1}$}}
 is a {{c2::\((G \times G)\)-set}}.
 * 2024-09-06 isomorphic G-sets and cosets
@@ -527,7 +527,7 @@ It is also injective because $\tilde{\phi}(g\ker(\phi))$ = $\phi(g)$ = $1 \impli
 :ANKI_NOTE_ID: 1726111284695
 :END:
 By {{c1::the isomorphism theorem for groups}}, $\text{im}(\phi) \cong$ {{c2::$G/\ker(\phi)$}}.
-** cube symmetries
+** cube rotations
 *** <<<principal diagonal>>>
 :PROPERTIES:
 :ANKI_NOTE_ID: 1726058969220
@@ -556,4 +556,102 @@ An injective homomorphism
 $\tilde{\phi}$ : $G/\ker(\phi) \hookrightarrow S_4$ exists
 by the isomorphism theorem for groups;
 since $G \cong G/\ker(\phi)$ and $|G|$ = $|S_4|$, this implies $G \cong S_4$.
-* 2024-09-13 
+* 2024-09-13 cube symmetries and conjugacy
+** cube rotations and reflections :theorem:
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726232156024
+:END:
+The group $\tilde{G}$ of {{c2::rotations and reflections of a cube}} is isomorphic to {{c1::$S_4 \times \mathbb{Z} / 2 \mathbb{Z}$}}.
+*** Prove that the group $\tilde{G}$ of rotations and reflections of a cube is isomorphic to $S_4 \times \mathbb{Z} / 2 \mathbb{Z}$.
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726232149549
+:END:
+Let $X$ be the cube's principal diagonals and $G$ the group of rotations.
+$\tilde{G}$ = $\tilde{\text{Aut}}(X)$ rotations and reflections on $X$
+Clearly $G \subseteq \tilde{G}$, so
+$|\tilde{G}|$ = $|G| [\tilde{G} : G]$.
+Taking for granted that there are two orientations, collectively denoted by $O$, in $\mathbb{R}^3$,
+it can be seen that $\tilde{G}/G \cong \{1, \tau\}$ for some $\tau$, hence $|\tilde{G}|$ = $48$.
+
+A homomorphism $\eta$ : $\tilde{G} \rightarrow \text{Aut}(O)$ = $S_2$ = $\mathbb{Z} / 2 \mathbb{Z}$ = $\{1, \tau\}$
+then exists with $\ker(\eta)$ = $G$
+and $\tau$ := $v \mapsto -v$, which can thought of as
+the product of transpositions of each vertex with its opposite or
+the $-1$ matrix with the center of the cube considered as the origin.
+$\tau$ commutes with all of $\tilde{G}$, so $\tilde{G}$ = $G \sqcup \tau G$.
+
+Now $\phi$ : $S_4 \times \mathbb{Z} / 2 \mathbb{Z} \rightarrow \tilde{G}$ : $(g, j) \mapsto g \tau^{j}$
+is clearly bijective, and since
+$\forall g,g' \in G$ : $\forall j,j' \in \mathbb{Z} / 2 \mathbb{Z}$ :
+$\phi(g g', j j')$ = $(g g') \tau^{j j'}$ = $(g \tau^j) (g \tau^{j'})$
+it is a homomorphism.
+** center of a group
+*** <<<center>>> of a group
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726231642254
+:END:
+The {{c1::center}} of a group $G$ is
+{{c1::$Z(G)$}} := {{c2::$\{z \in G \mid \forall g \in G : z g = g z\}$}}.
+**** center of a permutation group
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726231643478
+:END:
+$Z(S_4)$ = {{c1::$\{1\}$}}.
+** conjugation action
+*** conjugation is almost never transitive
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726232632725
+:END:
+The conjugation action of $G$ on itself is {{c1::not transitive}} when {{c2::$|G|$ > $1$}}, since
+{{c2::$\forall g \in G$ : $g 1 g^{-1}$ = $1$}}.
+*** <<<conjugacy class>>>
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726232731201
+:END:
+A {{c1::conjugacy class}} is {{c2::an orbit for the conjugation action}}.
+*** <<<class equation>>>
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726597706797
+:END:
+({{c1::Class equation}}.)
+For a group $G$ with conjugacy classes represented by {{c2::elements $\{g_i\}$ disjoint from $Z(G)$}},
+{{c3::$|G|$}} = {{c3::$|Z(G)|$ + $\sum_{i} [G : Z_G(g_i)]$}}
+where {{c3::$Z_G(g)$}} is {{c3::the centralizer of $g$ in $G$}}.
+** examples of conjugacy classes
+*** commutative groups have singleton conjugacy classes
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726232810601
+:END:
+A {{c1::commutative}} group has only conjugacy classes of {{c2::size $1$::property}}.
+*** conjugacy classes of $D_8$
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726232915352
+:END:
+The {{c1::conjugacy classes}} of {{c2::$D_8$}} are {{c3::$\{1\}$, $\{r^2\}$, $\{V, H\}$, $\{D_1, D_2\}$, and $\{r, r^3\}$}}.
+*** <<<cycle shape>>>
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726233591106
+:END:
+The {{c1::cycle shape}} of $\sigma \in S_n$ is {{c2::the partition of $[n]$ that it determines}}.
+**** cycle shape of $1$
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726233592355
+:END:
+The {{c1::cycle shape}} of {{c2::$1$}} $\in S_n$ is {{c3::$\underset{n \text{ times} }{1 + \cdots + 1}$ = $n$}}.
+**** cycle shape of the full cycle
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726234043804
+:END:
+The {{c1::cycle shape}} of {{c2::$(1 \cdots n)$}} $\in S_n$ is {{c3::$n$ = $n$}}.
+*** conjugacy classes of $S_n$
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726234045779
+:END:
+{{c1::Conjugate}} permutations in $S_n$ have the same {{c2::cycle shape}}.
+*** conjugacy classes of $S_4$
+:PROPERTIES:
+:ANKI_NOTE_ID: 1726234040079
+:END:
+The {{c1::conjugacy classes}} of $S_4$ are
+{{c2::$\{1\}$, the transpositions, the \(3\)-cycles, the compositions of disjoint transpositions, and the \(4\)-cycles}},
+which have cardinalities {{c3::$1$, $\binom{4}{2}$, $4 \cdot 2$, $\binom{4}{2}$, and $3!$}} respectively.
